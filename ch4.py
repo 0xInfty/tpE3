@@ -19,6 +19,12 @@ Q1 = 6 - 3*1.028 - 1.188 - 1.992
 
 Q2 = 1 - 0.9343
 
+Z_C = 6
+Z_H = 1
+
+lim = 5
+n = 9
+
 #%% LOAD DATA
 
 os.chdir(path)
@@ -43,3 +49,22 @@ for i in range(9):
         if S[i,j] != S[j,i]:
             print("No es simétrica en", i, j)
 del i,j
+
+#%% Ocupation levels
+
+D = np.matmul(P, S)
+
+niv = np.diag(D)
+t = np.sum(niv) # 10 electrones :)
+
+#%% Mülliken Effective Charge
+
+q = np.array([Z_C - np.sum(niv[0:lim]),
+              *[Z_H - niv[i] for i in range(lim,n)]])
+
+Q = np.sum(q) # Casi cero. Bien, porque es no polar :)
+
+#%%
+
+rho = np.array([np.sum(D[0:lim,:]),
+                *[np.sum(D[i,:]) for i in range(lim,n)]])
