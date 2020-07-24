@@ -16,7 +16,6 @@ import numpy as np
 path = r"D:\Vall\Documentos\Mis documentos\Facu\Estructura de la Materia 3\TP\tpE3"
 
 Q1 = 6 - 3*1.028 - 1.188 - 1.992
-
 Q2 = 1 - 0.9343
 
 Z_C = 6
@@ -64,7 +63,12 @@ q = np.array([Z_C - np.sum(niv[0:lim]),
 
 Q = np.sum(q) # Casi cero. Bien, porque es no polar :)
 
-#%%
+#%% Rhos for Effective Charge (definitly not equal to qs)
 
-rho = np.array([np.sum(D[0:lim,:]),
-                *[np.sum(D[i,:]) for i in range(lim,n)]])
+rho = np.array([np.sum(niv[0:lim]),
+                *[np.sum(niv[i]) for i in range(lim,n)]])
+
+#rho = np.array([np.sum(D[0:lim,:]),
+#                *[np.sum(D[i,:]) for i in range(lim,n)]])
+
+    
